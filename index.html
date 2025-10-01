@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OtsoBear</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --text-dim: #707070;
+            --accent: #5a8fd8;
+            --accent-hover: #7aa8e8;
+            --border: #252525;
+        }
+        
+        body {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+        }
+        
+        .links-row {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .link:hover {
+            color: var(--text-primary);
+        }
+        
+        .link:hover::after {
+            width: 100%;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+        
+        .repo-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .repo-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+        
+        .repo-card:hover {
+            transform: translateX(4px);
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+        
+        .repo-info {
+            flex: 1;
+        }
+        
+        .repo-title {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        
+        .repo-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .repo-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .repo-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--bg-secondary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+        }
+        
+        .repo-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        
+        .lang-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .lang-js { background: #f1e05a; }
+        .lang-rust { background: #dea584; }
+        .lang-python { background: #3572A5; }
+        .lang-ts { background: #3178c6; }
+        .lang-css { background: #563d7c; }
+        .lang-html { background: #e34c26; }
+        .lang-gdscript { background: #355570; }
+        .lang-shell { background: #89e051; }
+        
+        .repo-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .forked-badge {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-left: 0.5rem;
+            padding: 0.1rem 0.4rem;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .links-row {
+                gap: 1rem;
+            }
+            
+            .repo-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>OtsoBear</h1>
+            <p class="subtitle">Computing machines</p>
+        </header>
+
+        <div class="links-row">
+            <a href="https://github.com/OtsoBear" class="link">GitHub</a>
+            <a href="https://otso.veistera.com" class="link">otso.veistera.com</a>
+            <a href="https://otsobear.github.io/CmyData" class="link">CmyData</a>
+            <a href="https://otso.veistera.com/translate" class="link">LaTeX Translator</a>
+            <a href="https://chromewebstore.google.com/detail/latextocalc/nangjgcfgoikendjhgbcmobbcpijdcjn" class="link">LatexToCalc Extension</a>
+        </div>
+
+        <section class="section">
+            <h2>Calculators & Math Tools</h2>
+            <div class="repo-grid">
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">LatexToCalc</div>
+                        <div class="repo-description">
+                            Chrome extension that communicates with a translation server to convert LaTeX formulae to calculator-friendly format
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-tags">
+                                <span class="tag">latex</span>
+                                <span class="tag">ti-nspire</span>
+                                <span class="tag">speedcrunch</span>
+                            </div>
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat">★ 4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">LatexToCalc-Server</div>
+                        <div class="repo-description">
+                            Backend server for LatexToCalc, handles LaTeX to calculator translation
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-tags">
+                                <span class="tag">latex</span>
+                                <span class="tag">katex</span>
+                                <span class="tag">ti-nspire</span>
+                            </div>
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat">★ 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">Finspire-2.0</div>
+                        <div class="repo-description">
+                            Backend-free LaTeX to calculator converter using PyScript WebAssembly runtime
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-tags">
+                                <span class="tag">latex</span>
+                                <span class="tag">ti-nspire</span>
+                            </div>
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-python"></span>
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">MathJaxToLaTeX</div>
+                        <div class="repo-description">
+                            Convert MathJax rendered equations back to LaTeX format
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">LatexEvaluator</div>
+                        <div class="repo-description">
+                            Chrome extension for evaluating LaTeX equations automatically
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Graphics & Simulation</h2>
+            <div class="repo-grid">
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">raytracer</div>
+                        <div class="repo-description">
+                            Ray tracing renderer implementation
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-rust"></span>
+                                Rust
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat">★ 3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">PyQMD</div>
+                        <div class="repo-description">
+                            Quantum Molecular Dynamics simulation using Python and CUDA
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-python"></span>
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">old-raytracer</div>
+                        <div class="repo-description">
+                            Previous iteration of ray tracer implementation
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-rust"></span>
+                                Rust
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">Gamejam-VR-Swimming</div>
+                        <div class="repo-description">
+                            VR swimming game created for a game jam
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-gdscript"></span>
+                                GDScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Web & AI Tools</h2>
+            <div class="repo-grid">
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">juxtaprompt</div>
+                        <div class="repo-description">
+                            Juxtapose the outputs of different LLM prompts for comparison
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-ts"></span>
+                                TypeScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">docs-exporter</div>
+                        <div class="repo-description">
+                            Export multiple Mintlify docs pages into a single text for LLMs
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">CmyData</div>
+                        <div class="repo-description">
+                            Website that shows every piece of info gatherable from just connecting to it
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">open-webui <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            Interface for LLM APIs
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Web Development</h2>
+            <div class="repo-grid">
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">rust-server</div>
+                        <div class="repo-description">
+                            Server with Rust backend, maybe a website frontend with Javascript
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-html"></span>
+                                HTML
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">veistera.com</div>
+                        <div class="repo-description">
+                            Personal website
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">STUHI.org</div>
+                        <div class="repo-description">
+                            Student organization website
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-css"></span>
+                                CSS
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">socketio-test</div>
+                        <div class="repo-description">
+                            Socket.IO testing and experimentation
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">perseus <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            State-driven web development framework for Rust with SSR and static generation
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-rust"></span>
+                                Rust
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">orangutan <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            Lightweight Rust web server library inspired by Python's Flask
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-rust"></span>
+                                Rust
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Utilities</h2>
+            <div class="repo-grid">
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">School-Food-Scraper</div>
+                        <div class="repo-description">
+                            Scrapes school lunch menu of Finnish schools from kouluruoka.fi
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-python"></span>
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">Minecraft-Crash-Report-Parser</div>
+                        <div class="repo-description">
+                            Parse and analyze Minecraft crash reports
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-python"></span>
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">Horoscope-telegram-bot</div>
+                        <div class="repo-description">
+                            Telegram bot made as a joke
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-python"></span>
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">ota-lounas-tg <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            Telegram bot for school lunch information
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-python"></span>
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">WilmaAPI <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            Access to Wilma's public API without need for an API key
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">OtaWilma-frontend <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            Frontend for OtaWilma school management system
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-js"></span>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-info">
+                        <div class="repo-title">MacroPower <span class="forked-badge">fork</span></div>
+                        <div class="repo-description">
+                            Profile with dynamic realtime coding stats
+                        </div>
+                        <div class="repo-meta">
+                            <div class="repo-lang">
+                                <span class="lang-dot lang-shell"></span>
+                                Shell
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>otsobear.github.io</p>
+        </footer>
+    </div>
+</body>
+</html>
