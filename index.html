@@ -121,12 +121,49 @@
             display: flex;
             justify-content: space-between;
             align-items: start;
+            text-decoration: none;
+            color: inherit;
         }
         
         .repo-card:hover {
             transform: translateX(4px);
             border-color: var(--accent);
             background: var(--bg-secondary);
+        }
+        
+        .repo-card-split {
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .repo-card-left {
+            padding: 1.25rem;
+            flex: 1;
+            background: var(--bg-card);
+        }
+        
+        .repo-card-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            min-width: 120px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .repo-card-right:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        
+        .repo-card-split:hover .repo-card-right {
+            border-left-color: var(--accent);
         }
         
         .repo-info {
@@ -205,6 +242,11 @@
             gap: 0.3rem;
         }
         
+        .repo-year {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        
         .forked-badge {
             font-size: 0.75rem;
             color: var(--text-dim);
@@ -258,58 +300,76 @@
             <a href="https://otsobear.github.io/chrome2moz" class="link">chrome2moz</a>
             <a href="https://otso.veistera.com/translate" class="link">LaTeX Translator</a>
             <a href="https://chromewebstore.google.com/detail/latextocalc/nangjgcfgoikendjhgbcmobbcpijdcjn" class="link">LatexToCalc Extension</a>
+            <a href="https://otsobear.github.io/juxtaprompt" class="link">juxtaprompt</a>
+            <a href="https://otsobear.github.io/docs-exporter" class="link">docs-exporter</a>
+            <a href="https://stuhi.org" class="link">STUHI.org</a>
         </div>
 
         <section class="section">
             <h2>Calculators & Math Tools</h2>
             <div class="repo-grid">
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">LatexToCalc</div>
-                        <div class="repo-description">
-                            Chrome extension that communicates with a translation server to convert LaTeX formulae to calculator-friendly format
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-tags">
-                                <span class="tag">latex</span>
-                                <span class="tag">ti-nspire</span>
-                                <span class="tag">speedcrunch</span>
+                <!-- Created: Tue May 14 2024 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">LatexToCalc</div>
+                            <div class="repo-description">
+                                Chrome extension that communicates with a translation server to convert LaTeX formulae to calculator-friendly format
                             </div>
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-js"></span>
-                                JavaScript
-                            </div>
-                            <div class="repo-stats">
-                                <span class="stat">★ 4</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">LatexToCalc-Server</div>
-                        <div class="repo-description">
-                            Backend server for LatexToCalc, handles LaTeX to calculator translation
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-tags">
-                                <span class="tag">latex</span>
-                                <span class="tag">katex</span>
-                                <span class="tag">ti-nspire</span>
-                            </div>
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-js"></span>
-                                JavaScript
-                            </div>
-                            <div class="repo-stats">
-                                <span class="stat">★ 2</span>
+                            <div class="repo-meta">
+                                <div class="repo-tags">
+                                    <span class="tag">latex</span>
+                                    <span class="tag">ti-nspire</span>
+                                    <span class="tag">speedcrunch</span>
+                                </div>
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    JavaScript
+                                </div>
+                                <div class="repo-stats">
+                                    <span class="stat">★ 4</span>
+                                </div>
+                                <div class="repo-year">2024</div>
                             </div>
                         </div>
                     </div>
+                    <a href="https://chromewebstore.google.com/detail/latextocalc/nangjgcfgoikendjhgbcmobbcpijdcjn" target="_blank" class="repo-card-right">
+                        Visit Extension →
+                    </a>
                 </div>
 
-                <div class="repo-card">
+                <!-- Created: Sun May 19 2024 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">LatexToCalc-Server</div>
+                            <div class="repo-description">
+                                Backend server for LatexToCalc, handles LaTeX to calculator translation
+                            </div>
+                            <div class="repo-meta">
+                                <div class="repo-tags">
+                                    <span class="tag">latex</span>
+                                    <span class="tag">katex</span>
+                                    <span class="tag">ti-nspire</span>
+                                </div>
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    JavaScript
+                                </div>
+                                <div class="repo-stats">
+                                    <span class="stat">★ 2</span>
+                                </div>
+                                <div class="repo-year">2024</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://otso.veistera.com/translate" target="_blank" class="repo-card-right">
+                        Visit Site →
+                    </a>
+                </div>
+
+                <!-- Created: May 10 2024 -->
+                <a href="https://github.com/OtsoBear/Finspire-2.0" target="_blank" class="repo-card">
                     <div class="repo-info">
                         <div class="repo-title">Finspire-2.0</div>
                         <div class="repo-description">
@@ -324,11 +384,13 @@
                                 <span class="lang-dot lang-python"></span>
                                 Python
                             </div>
+                            <div class="repo-year">2024</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="repo-card">
+                <!-- Created: Apr 9 2025 -->
+                <a href="https://github.com/OtsoBear/MathJaxToLaTeX" target="_blank" class="repo-card">
                     <div class="repo-info">
                         <div class="repo-title">MathJaxToLaTeX</div>
                         <div class="repo-description">
@@ -339,31 +401,18 @@
                                 <span class="lang-dot lang-js"></span>
                                 JavaScript
                             </div>
+                            <div class="repo-year">2025</div>
                         </div>
                     </div>
-                </div>
-
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">LatexEvaluator</div>
-                        <div class="repo-description">
-                            Chrome extension for evaluating LaTeX equations automatically
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-js"></span>
-                                JavaScript
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
         </section>
 
         <section class="section">
             <h2>Graphics & Simulation</h2>
             <div class="repo-grid">
-                <div class="repo-card">
+                <!-- Created: Nov 26 2023 -->
+                <a href="https://github.com/OtsoBear/raytracer" target="_blank" class="repo-card">
                     <div class="repo-info">
                         <div class="repo-title">raytracer</div>
                         <div class="repo-description">
@@ -377,11 +426,13 @@
                             <div class="repo-stats">
                                 <span class="stat">★ 3</span>
                             </div>
+                            <div class="repo-year">2023</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="repo-card">
+                <!-- Created: Apr 28 2025 -->
+                <a href="https://github.com/OtsoBear/PyQMD" target="_blank" class="repo-card">
                     <div class="repo-info">
                         <div class="repo-title">PyQMD</div>
                         <div class="repo-description">
@@ -392,82 +443,111 @@
                                 <span class="lang-dot lang-python"></span>
                                 Python
                             </div>
+                            <div class="repo-year">2025</div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
         <section class="section">
             <h2>Web & AI Tools</h2>
             <div class="repo-grid">
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">chrome2moz</div>
-                        <div class="repo-description">
-                            Chrome to Firefox extension converter with WebAssembly UI. AST-based parsing, automatic API conversion, and compatibility shims for MV3 extensions.
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-tags">
-                                <span class="tag">rust</span>
-                                <span class="tag">webassembly</span>
-                                <span class="tag">firefox</span>
-                                <span class="tag">chrome-extensions</span>
+                <!-- Created: Mon Oct 06 2025 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">chrome2moz</div>
+                            <div class="repo-description">
+                                Chrome to Firefox extension converter with WebAssembly UI. AST-based parsing, automatic API conversion, and compatibility shims for MV3 extensions.
                             </div>
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-rust"></span>
-                                Rust
-                            </div>
-                            <div class="repo-stats">
-                                <span class="stat">★ 2</span>
+                            <div class="repo-meta">
+                                <div class="repo-tags">
+                                    <span class="tag">rust</span>
+                                    <span class="tag">webassembly</span>
+                                    <span class="tag">firefox</span>
+                                    <span class="tag">chrome-extensions</span>
+                                </div>
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-rust"></span>
+                                    Rust
+                                </div>
+                                <div class="repo-stats">
+                                    <span class="stat">★ 2</span>
+                                </div>
+                                <div class="repo-year">2025</div>
                             </div>
                         </div>
                     </div>
+                    <a href="https://otsobear.github.io/chrome2moz" target="_blank" class="repo-card-right">
+                        Visit Site →
+                    </a>
                 </div>
 
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">juxtaprompt</div>
-                        <div class="repo-description">
-                            Juxtapose the outputs of different LLM prompts for comparison
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-ts"></span>
-                                TypeScript
+                <!-- Created: Aug 7 2025 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">juxtaprompt</div>
+                            <div class="repo-description">
+                                Juxtapose the outputs of different LLM prompts for comparison
+                            </div>
+                            <div class="repo-meta">
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-ts"></span>
+                                    TypeScript
+                                </div>
+                                <div class="repo-year">2025</div>
                             </div>
                         </div>
                     </div>
+                    <a href="https://otsobear.github.io/juxtaprompt" target="_blank" class="repo-card-right">
+                        Visit Site →
+                    </a>
                 </div>
 
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">docs-exporter</div>
-                        <div class="repo-description">
-                            Export multiple Mintlify docs pages into a single text for LLMs
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-js"></span>
-                                JavaScript
+                <!-- Created: Sat Sep 27 2025 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">docs-exporter</div>
+                            <div class="repo-description">
+                                Export multiple Mintlify docs pages into a single text for LLMs
+                            </div>
+                            <div class="repo-meta">
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    JavaScript
+                                </div>
+                                <div class="repo-year">2025</div>
                             </div>
                         </div>
                     </div>
+                    <a href="https://otsobear.github.io/docs-exporter" target="_blank" class="repo-card-right">
+                        Visit Site →
+                    </a>
                 </div>
 
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">CmyData</div>
-                        <div class="repo-description">
-                            Website that shows every piece of info gatherable from just connecting to it
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-js"></span>
-                                JavaScript
+                <!-- Created: Apr 16 2025 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">CmyData</div>
+                            <div class="repo-description">
+                                Website that shows every piece of info gatherable from just connecting to it
+                            </div>
+                            <div class="repo-meta">
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    JavaScript
+                                </div>
+                                <div class="repo-year">2025</div>
                             </div>
                         </div>
                     </div>
+                    <a href="https://otsobear.github.io/CmyData" target="_blank" class="repo-card-right">
+                        Visit Site →
+                    </a>
                 </div>
             </div>
         </section>
@@ -475,34 +555,26 @@
         <section class="section">
             <h2>Web Development</h2>
             <div class="repo-grid">
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">veistera.com</div>
-                        <div class="repo-description">
-                            Personal website
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-js"></span>
-                                JavaScript
+                <!-- Created: Feb 2 2025 -->
+                <div class="repo-card repo-card-split">
+                    <div class="repo-card-left">
+                        <div class="repo-info">
+                            <div class="repo-title">STUHI.org</div>
+                            <div class="repo-description">
+                                Student organization website
+                            </div>
+                            <div class="repo-meta">
+                                <div class="repo-lang">
+                                    <span class="lang-dot lang-css"></span>
+                                    CSS
+                                </div>
+                                <div class="repo-year">2025</div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="repo-card">
-                    <div class="repo-info">
-                        <div class="repo-title">STUHI.org</div>
-                        <div class="repo-description">
-                            Student organization website
-                        </div>
-                        <div class="repo-meta">
-                            <div class="repo-lang">
-                                <span class="lang-dot lang-css"></span>
-                                CSS
-                            </div>
-                        </div>
-                    </div>
+                    <a href="https://stuhi.org" target="_blank" class="repo-card-right">
+                        Visit Site →
+                    </a>
                 </div>
             </div>
         </section>
@@ -510,7 +582,8 @@
         <section class="section">
             <h2>Utilities</h2>
             <div class="repo-grid">
-                <div class="repo-card">
+                <!-- Created: Dec 15 2022 -->
+                <a href="https://github.com/OtsoBear/School-Food-Scraper" target="_blank" class="repo-card">
                     <div class="repo-info">
                         <div class="repo-title">School-Food-Scraper</div>
                         <div class="repo-description">
@@ -521,11 +594,13 @@
                                 <span class="lang-dot lang-python"></span>
                                 Python
                             </div>
+                            <div class="repo-year">2022</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="repo-card">
+                <!-- Created: Apr 7 2023 -->
+                <a href="https://github.com/OtsoBear/Minecraft-Crash-Report-Parser" target="_blank" class="repo-card">
                     <div class="repo-info">
                         <div class="repo-title">Minecraft-Crash-Report-Parser</div>
                         <div class="repo-description">
@@ -536,9 +611,10 @@
                                 <span class="lang-dot lang-python"></span>
                                 Python
                             </div>
+                            <div class="repo-year">2023</div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
